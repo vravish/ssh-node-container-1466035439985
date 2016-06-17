@@ -21,7 +21,6 @@ RUN useradd --create-home --shell /bin/bash --groups sudo vravish
 RUN printf "welcome\nwelcome\n" | passwd vravish
 
 EXPOSE 8080
-EXPOSE 8081
 EXPOSE 22
 EXPOSE 80
 EXPOSE 9080
