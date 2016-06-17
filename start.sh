@@ -1,2 +1,2 @@
-npm start;
+# npm start;
 /usr/sbin/sshd
