@@ -13,6 +13,7 @@ COPY . /usr/src/app
 
 # Set up SSH
 RUN apt-get update ; apt-get install -y openssh-server
+RUN apt-get install -y sudo
 RUN mkdir /var/run/sshd
 RUN chmod 0755 /var/run/sshd
 RUN /usr/sbin/sshd
@@ -20,8 +21,8 @@ RUN useradd --create-home --shell /bin/bash --groups sudo vravish
 RUN printf "welcome\nwelcome\n" | passwd vravish
 
 EXPOSE 8080
+EXPOSE 8081
 EXPOSE 22
 EXPOSE 80
 EXPOSE 9080
-CMD [ "npm", "start" ]
-
+CMD [ "sh", "./start.sh" ]
