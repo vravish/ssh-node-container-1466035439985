@@ -16,7 +16,6 @@ RUN apt-get update ; apt-get install -y openssh-server
 RUN apt-get install -y sudo default-jdk default-jre zip
 RUN mkdir /var/run/sshd
 RUN chmod 0755 /var/run/sshd
-RUN /usr/sbin/sshd
 RUN useradd --create-home --shell /bin/bash --groups sudo vravish
 RUN printf "welcome\nwelcome\n" | passwd vravish
 
