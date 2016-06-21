@@ -24,4 +24,3 @@ EXPOSE 22
 EXPOSE 80
 EXPOSE 9080
 EXPOSE 1111
-CMD [ "sh", "./start.sh" ]
