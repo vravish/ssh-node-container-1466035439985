@@ -3,7 +3,7 @@
 echo $IC_COMMAND is the command to call for ice
 # echo ${FLOATING_IP} is the IP of the node container
 
-$IC_COMMAND exec -it apache-chef-node-container_29 /usr/sbin/sshd
+$IC_COMMAND exec -it apache-chef-node-container_30 /usr/sbin/sshd
 
 mkdir -p chef-repo/.chef
 cp knife.rb chef-repo/.chef
