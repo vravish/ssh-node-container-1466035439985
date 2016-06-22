@@ -1,8 +1,9 @@
 MY_CONTAINER_NAME="${CONTAINER_NAME}_${BUILD_NUMBER}"
 echo $MY_CONTAINER_NAME is the container name
 echo $IC_COMMAND is the command to call for ice
+echo ${FLOATING_IP} is the IP of the node container
 
-# $IC_COMMAND exec -it $MY_CONTAINER_NAME /usr/sbin/sshd
+$IC_COMMAND exec -it $MY_CONTAINER_NAME /usr/sbin/sshd
 
 mkdir -p chef-repo/.chef
 cp knife.rb chef-repo/.chef
@@ -15,6 +16,6 @@ cd chef-repo
 knife ssl fetch
 knife ssl check
 
-# knife bootstrap ${FLOATING_IP} --ssh-user vravish --ssh-password 'welcome' --sudo --use-sudo-password --node-name node1 --run-list 'recipe[venu_tomcat]'
+knife bootstrap ${FLOATING_IP} --ssh-user vravish --ssh-password 'welcome' --sudo --use-sudo-password --node-name node1 --run-list 'recipe[venu_tomcat]'
 
 
