@@ -19,9 +19,15 @@ RUN chmod 0755 /var/run/sshd
 RUN useradd --create-home --shell /bin/bash --groups sudo vravish
 RUN printf "welcome\nwelcome\n" | passwd vravish
 
+# Add public key to right place
+RUN mkdir -p /home/vravish/.ssh
+RUN cat /usr/src/app/id_rsa.pub >> /home/vravish/.ssh/authorized_keys
+
+# Expose all ports
 EXPOSE 8080
 EXPOSE 22
 EXPOSE 80
 EXPOSE 9080
 EXPOSE 1111
+
 CMD ["npm", "start"]

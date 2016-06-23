@@ -1,10 +1,21 @@
-# MY_CONTAINER_NAME="${CONTAINER_NAME}_${BUILD_NUMBER}"
-# echo $MY_CONTAINER_NAME is the container name
+cf ic ps
+
+echo $MY_CONTAINER_NAME is the passed container name
+CONTAINER_ID=$(cf ic ps | grep $MY_CONTAINER_NAME | cut -d ' ' -f1)
+echo $CONTAINER_ID is the container ID
 echo $IC_COMMAND is the command to call for ice
-# echo ${FLOATING_IP} is the IP of the node container
+echo $NODE_IP is the passed IP of the node container
 
-$IC_COMMAND exec -it apache-chef-node-container_30 /usr/sbin/sshd
 
+# Activate SSH and enable passwordless login for this VM
+$IC_COMMAND exec -it $CONTAINER_ID /usr/sbin/sshd
+mkdir -p ~/.ssh
+cp ./id_rsa* ~/.ssh
+chmod 0700 ~/.ssh/id_rsa*
+
+
+
+# Install Chef
 mkdir -p chef-repo/.chef
 cp knife.rb chef-repo/.chef
 cp admin.pem chef-repo/.chef
@@ -16,6 +27,17 @@ cd chef-repo
 knife ssl fetch
 knife ssl check
 
-knife bootstrap 169.44.119.171 --ssh-user vravish --ssh-password 'welcome' --sudo --use-sudo-password --node-name node1 --run-list 'recipe[venu_tomcat]'
+
+# Make sure vravish can change all items in the home folder
+ssh vravish@$NODE_IP 'sudo chown -R vravish:vravish /home/vravish'
+
+
+# Copy the cookbook to chef_repo/cookbooks
+mkdir chef_repo/cookbooks
+cp ./
+
+
+# Finally do the knife bootstrapping
+knife bootstrap $NODE_IP -y --ssh-user vravish --ssh-password 'welcome' --sudo --use-sudo-password --node-name tomcat --run-list 'recipe[venu_tomcat]'
 
 
