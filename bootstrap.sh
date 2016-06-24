@@ -13,6 +13,8 @@ mkdir -p ~/.ssh
 cp ./id_rsa* ~/.ssh
 chmod 0700 ~/.ssh/id_rsa*
 
+# Prevent asking for authenticity during connections
+ssh -o StrictHostKeyChecking=no vravish@169.44.118.61 'echo hello' 
 
 
 # Install Chef
