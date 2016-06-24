@@ -13,7 +13,8 @@ COPY . /usr/src/app
 
 # Set up SSH
 RUN apt-get update ; apt-get install -y zip
-RUN apt-get install -y sudo default-jdk default-jre openssh-server
+RUN apt-get install -y default-jre
+RUN apt-get install -y sudo openssh-server
 RUN mkdir /var/run/sshd
 RUN chmod 0755 /var/run/sshd
 RUN useradd --create-home --shell /bin/bash --groups sudo vravish
@@ -21,7 +22,7 @@ RUN printf "welcome\nwelcome\n" | passwd vravish
 
 # Add public key to right place
 RUN mkdir -p /home/vravish/.ssh
-RUN cat /usr/src/app/id_rsa.pub > > /home/vravish/.ssh/authorized_keys
+RUN cat /usr/src/app/id_rsa.pub >> /home/vravish/.ssh/authorized_keys
 
 # Expose all ports
 EXPOSE 8080
