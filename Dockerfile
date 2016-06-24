@@ -20,8 +20,8 @@ RUN useradd --create-home --shell /bin/bash --groups sudo vravish
 RUN printf "welcome\nwelcome\n" | passwd vravish
 
 # Add public key to right place
-RUN mkdir -p /home/vravish/.ssh
-RUN cat /usr/src/app/id_rsa.pub >> /home/vravish/.ssh/authorized_keys
+# RUN mkdir -p /home/vravish/.ssh
+# RUN cat /usr/src/app/id_rsa.pub > > /home/vravish/.ssh/authorized_keys
 
 # Expose all ports
 EXPOSE 8080
