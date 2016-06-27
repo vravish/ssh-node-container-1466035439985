@@ -1,10 +1,11 @@
-cf ic ps
+$IC_COMMAND ps
 
 echo $MY_CONTAINER_NAME is the passed container name
-CONTAINER_ID=$(cf ic ps | grep $MY_CONTAINER_NAME | cut -d ' ' -f1)
+CONTAINER_ID=$($IC_COMMAND ps | grep $MY_CONTAINER_NAME | cut -d ' ' -f1)
 echo $CONTAINER_ID is the container ID
 echo $IC_COMMAND is the command to call for ice
-echo $NODE_IP is the passed IP of the node container
+NODE_IP=$($IC_COMMAND inspect --format '{{ .NetworkSettings.IPAddress }}' $CONTAINER_ID)
+echo $NODE_IP is the IP of the node container
 
 
 # Activate SSH and enable passwordless login for this VM
@@ -14,7 +15,7 @@ cp ./id_rsa* ~/.ssh
 chmod 0700 ~/.ssh/id_rsa*
 
 # Prevent asking for authenticity during connections
-ssh -o StrictHostKeyChecking=no vravish@169.44.118.61 'echo hello' 
+ssh -o StrictHostKeyChecking=no vravish@$NODE_IP 'echo hello' 
 
 
 # Install Chef
