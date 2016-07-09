@@ -15,13 +15,14 @@ cp ./id_rsa* ~/.ssh
 chmod 0700 ~/.ssh/id_rsa*
 
 # Prevent asking for authenticity during connections
-ssh -o StrictHostKeyChecking=no vravish@$NODE_IP 'echo hello' 
+ssh -o StrictHostKeyChecking=no vravish@$NODE_IP 'echo Successfully accessed node through SSH'
 
 
 # Install Chef
 mkdir -p chef-repo/.chef
 cp knife.rb chef-repo/.chef
 cp admin.pem chef-repo/.chef
+cp -r cookbooks chef-repo
 
 wget https://packages.chef.io/stable/ubuntu/12.04/chefdk_0.15.15-1_amd64.deb
 sudo dpkg --install chefdk_0.15.15-1_amd64.deb
@@ -31,11 +32,17 @@ knife ssl fetch
 knife ssl check
 
 
+# Upload cookbooks from here
+#knife cookbook site install mysql
+#knife cookbook upload venu_tomcat -—include-dependencies
+#knife cookbook upload venu_mysql —-include-dependencies
+
+
 # Make sure vravish can change all items in the home folder
 ssh vravish@$NODE_IP 'sudo chown -R vravish:vravish /home/vravish'
 
 
 # Finally do the knife bootstrapping
-knife bootstrap $NODE_IP -y --ssh-user vravish --ssh-password 'welcome' --sudo --use-sudo-password --node-name tomcat --run-list 'recipe[venu_tomcat], recipe[venu_mysql]' || echo
+knife bootstrap $NODE_IP -y --ssh-user vravish --ssh-password 'welcome' --sudo --use-sudo-password --node-name tomcat-and-mysql --run-list 'recipe[venu_tomcat], recipe[venu_mysql]' || echo
 
 
