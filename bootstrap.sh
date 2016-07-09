@@ -10,11 +10,12 @@ echo $NODE_IP is the IP of the node container
 
 # Activate SSH and enable passwordless login for this VM
 $IC_COMMAND exec -it $CONTAINER_ID /usr/sbin/sshd
+$IC_COMMAND exec -it $CONTAINER_ID apt-get install -y default-jre
 mkdir -p ~/.ssh
 cp ./id_rsa* ~/.ssh
 chmod 0700 ~/.ssh/id_rsa*
 
-# Prevent asking for authenticity during connections
+# Prevent asking for authenticity during connections and install Java
 ssh -o StrictHostKeyChecking=no vravish@$NODE_IP 'echo Successfully accessed node through SSH'
 
 

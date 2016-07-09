@@ -13,7 +13,6 @@ COPY . /usr/src/app
 
 # Set up SSH
 RUN apt-get update ; apt-get install -y zip
-RUN apt-get install -y default-jre
 RUN apt-get install -y sudo openssh-server
 RUN mkdir /var/run/sshd
 RUN chmod 0755 /var/run/sshd
