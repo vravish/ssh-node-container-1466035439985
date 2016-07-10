@@ -1,4 +1,4 @@
-FROM node:argon
+FROM mysql:5.7 
 
 # Create app directory
 RUN mkdir -p /usr/src/app
@@ -6,7 +6,7 @@ WORKDIR /usr/src/app
 
 # Install app dependencies
 COPY package.json /usr/src/app/
-RUN npm install
+# RUN npm install
 
 # Bundle app source
 COPY . /usr/src/app
@@ -23,6 +23,14 @@ RUN printf "welcome\nwelcome\n" | passwd vravish
 RUN mkdir -p /home/vravish/.ssh
 RUN cat /usr/src/app/id_rsa.pub >> /home/vravish/.ssh/authorized_keys
 
+# Configure MySQL
+ENV MYSQL_USER="coreosuser"
+ENV MYSQL_DATABASE="enterpriseregistrydb"
+ENV MYSQL_CONTAINER_NAME="mysql"
+
+ENV MYSQL_ROOT_PASSWORD="rootpass"
+ENV MYSQL_PASSWORD="mypass"
+
 # Expose all ports
 EXPOSE 8080
 EXPOSE 22
@@ -31,4 +39,4 @@ EXPOSE 9080
 EXPOSE 1111
 EXPOSE 3306
 
-CMD ["npm", "start"]
+# CMD ["npm", "start"]
