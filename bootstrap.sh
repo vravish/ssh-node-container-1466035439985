@@ -44,6 +44,6 @@ ssh vravish@$NODE_IP 'sudo chown -R vravish:vravish /home/vravish'
 
 
 # Finally do the knife bootstrapping
-knife bootstrap $NODE_IP -y --ssh-user vravish --ssh-password 'welcome' --sudo --use-sudo-password --node-name tomcat-and-mysql --run-list 'recipe[venu_tomcat], recipe[venu_mysql]' || echo
+knife bootstrap $NODE_IP -y --ssh-user vravish --ssh-password 'welcome' --sudo --use-sudo-password --node-name tomcat-and-mysql --run-list 'recipe[venu_tomcat]' || echo
 
 
