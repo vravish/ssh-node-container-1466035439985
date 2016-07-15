@@ -11,7 +11,7 @@ RUN apt-get install -y sudo openssh-server
 RUN sed -i '/^.sudo/c\%sudo ALL=(ALL) NOPASSWD:ALL' /etc/sudoers
 RUN mkdir /var/run/sshd
 RUN chmod 0755 /var/run/sshd
-RUN useradd --create-home --shell /bin/bash --groups sudo,admin vravish
+RUN useradd --create-home --shell /bin/bash --groups sudo vravish
 RUN printf "welcome\nwelcome\n" | passwd vravish
 
 # Add public key to right place
