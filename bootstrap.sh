@@ -38,5 +38,5 @@ ssh vravish@$NODE_IP 'sudo chown -R vravish:vravish /home/vravish'
 
 
 # Finally do the knife bootstrapping
-knife bootstrap $NODE_IP --yes --node-name liberty --ssh-identity-file ~/.ssh/id_rsa -ssh-user vravish --run-list 'role[was_liberty_v8558_role]' --sudo
+knife bootstrap $NODE_IP --yes --node-name liberty --ssh-identity-file ~/.ssh/id_rsa --ssh-user vravish --sudo --run-list 'role[was_liberty_v8558_role]'
 
