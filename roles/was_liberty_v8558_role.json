@@ -1,0 +1,31 @@
+{
+  "name": "was_liberty_v8558_role",
+  "description": "WAS Liberty",
+  "chef_type": "role",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "run_list": [
+    "recipe[java_super::install]",  
+    "recipe[was_liberty::pre_install]",
+    "recipe[was_liberty::install_wlp]"
+  ],
+  "env_run_lists": {
+  },
+  "override_attributes": {
+  	"wasl": {
+      "user_install":	"wasadm",
+      "os_username":	"wasadm",
+      "os_password":	"$1$gViRaejt$1yNlMuWRh6C6nmdDiKh8t0",
+      "os_group":		"wasadm",
+      "server_name":	"testServer1"  
+    },
+    "java": {
+  	  "flavor": "jre",
+      "archive_file": "ibm-java-jre-8.0-1.10-linux-x86_64.tgz",
+      "install_path": "/opt/ibm/ibm-java-x86_64-80",
+      "url": "/install/CHEF_FILES/JAVA/JRE/8/RHEL/ibm-java-jre-8.0-1.10-linux-x86_64.tgz"
+
+  	}
+ }
+ }
