@@ -31,7 +31,7 @@ sudo dpkg --install chefdk_0.15.15-1_amd64.deb
 cd chef-repo
 knife ssl fetch
 knife ssl check
-
+knife role from file roles/*.json
 
 # Make sure vravish can change all items in the home folder
 ssh vravish@$NODE_IP 'sudo chown -R vravish:vravish /home/vravish'
