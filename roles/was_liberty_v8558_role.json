@@ -6,6 +6,7 @@
   "default_attributes": {
   },
   "run_list": [
+    "recipe[java_super::install]",  
     "recipe[was_liberty::pre_install]",
     "recipe[was_liberty::install_wlp]"
   ],
