@@ -38,5 +38,5 @@ ssh vravish@$NODE_IP 'sudo chown -R vravish:vravish /home/vravish'
 
 
 # Finally do the knife bootstrapping
-knife bootstrap $NODE_IP --yes --node-name liberty --ssh-identity-file ~/.ssh/id_rsa --ssh-user vravish --sudo --run-list 'recipe[venu_tomcat], recipe[db2_ese_v105fp6::rhel_server_install]'
+knife bootstrap $NODE_IP --yes --node-name tomcat --ssh-identity-file ~/.ssh/id_rsa --ssh-user vravish --sudo --run-list 'recipe[venu_tomcat]'
 
