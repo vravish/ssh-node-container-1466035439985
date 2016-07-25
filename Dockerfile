@@ -1,3 +1,3 @@
-FROM registry.access.redhat.com/rhel7.1
+FROM gidikern/rhel-oracle-jre 
 
 CMD ["echo", "hello"]
