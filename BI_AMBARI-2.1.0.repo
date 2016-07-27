@@ -1,0 +1,6 @@
+[BI_AMBARI-2.1.0]
+name=ambari-2.1.0
+baseurl=http://ibm-open-platform.ibm.com/repos/Ambari/rhel/7/x86_64/2.1.x/GA/2.1
+enabled=1
+gpgcheck=1
+gpgkey=http://ibm-open-platform.ibm.com/repos/Ambari/rhel/7/x86_64/2.1.x/GA/2.1/BI-GPG-KEY.public
