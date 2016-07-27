@@ -37,5 +37,4 @@ EXPOSE 9080
 EXPOSE 1111
 EXPOSE 3306
 
-CMD ["echo", "hello"]
-#CMD ["npm", "start"]
+CMD ["npm", "start"]
