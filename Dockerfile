@@ -1,16 +1,21 @@
-FROM gidikern/rhel-oracle-jre
+FROM centos:centos6
+MAINTAINER The CentOS Project <cloud-ops@centos.org>
 
-ADD BI_AMBARI-2.1.0.repo /etc/yum.repos.d
-CMD yum install -y tar
-WORKDIR /root
+RUN yum -y update; yum clean all
+RUN yum -y install epel-release; yum clean all
+RUN yum -y install nodejs npm; yum clean all
 
+# Create app directory
 RUN mkdir -p /usr/src/app
-COPY . /usr/src/app
 WORKDIR /usr/src/app
 
+# Install app dependencies
 COPY package.json /usr/src/app/
-CMD wget https://nodejs.org/dist/v4.4.7/node-v4.4.7-linux-x64.tar.xz && tar -xvf node-v4.4.7-linux-x64.tar.xz && \
-	 node-v4.4.7-linux-x64/bin/npm install
+RUN npm install
 
-EXPOSE 8080
-CMD [ "/usr/src/app/node-v4.4.7-linux-x64/bin/npm", "start" ] 
+# Bundle app source
+COPY . /usr/src/app
+
+EXPOSE 1111 
+
+CMD ["npm", "start"]
