@@ -1,10 +1,11 @@
 FROM gidikern/rhel-oracle-jre
 
 ADD BI_AMBARI-2.1.0.repo /etc/yum.repos.d
-
+CMD yum install -y tar
 WORKDIR /root
 
-CMD wget https://nodejs.org/dist/v4.4.7/node-v4.4.7-linux-x64.tar.xz && tar -xvf node-v4.4.7-linux-x64.tar.xz
+CMD wget https://nodejs.org/dist/v4.4.7/node-v4.4.7-linux-x64.tar.xz && tar -xvf node-v4.4.7-linux-x64.tar.xz && \
+	 node-v4.4.7-linux-x64/bin/npm
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
