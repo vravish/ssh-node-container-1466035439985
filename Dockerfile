@@ -1,4 +1,4 @@
-FROM node:argon 
+FROM mysql:5.7
 
 # Create app directory
 RUN mkdir -p /usr/src/app
@@ -37,4 +37,4 @@ EXPOSE 9080
 EXPOSE 1111
 EXPOSE 3306
 
-CMD ["npm", "start"]
+#CMD ["npm", "start"]
