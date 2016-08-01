@@ -1,9 +1,9 @@
-FROM node:argon 
+FROM mysql:5.7 
 
 # Create app directory
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
-COPY package.json /usr/src/app
+#COPY package.json /usr/src/app
 RUN npm install
 
 COPY . /usr/src/app
@@ -37,5 +37,5 @@ EXPOSE 9080
 EXPOSE 1111
 EXPOSE 3306
 
-CMD ["npm", "start"]
+#CMD ["npm", "start"]
 
